@@ -1,35 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { addToDo } from '../actions';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
-class AddTodoForm extends Component {
+const AddTodoForm = () => {
 
-  submitForm = (e) => {
-    e.preventDefault()
-    this.props.addToDo(this.state.todo)
-    this.setState({ todo: '' })
+  const allTodos = useSelector(state => state.todo);
+  let dispatch = useDispatch()
+  const { handleSubmit, register, reset } = useForm();
+
+  const onSubmit = values => {
+    dispatch(addToDo(values))
+    reset()
+    // this.props.addToDo(this.state.todo)
+    // this.setState({ todo: '' })
   }
 
-  handleChange = (e) => {
-    this.setState({ todo: e.target.value });
-  }
-
-  render() {
     return (
       <section>
-        <form onSubmit={this.submitForm}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             placeholder="Add A Todo"
-            onChange={this.handleChange} />
+            data-testid="add-to-do"
+            name="add-to-do"
+            ref={register({
+            required: "Required",
+            })}
+           />
           <button>Add Todo</button>
         </form>
       </section>
     )
-  }
 }
 
-const mapDispatchToProps = dispatch => ({
-  addToDo: text => dispatch( addToDo(text) )
-})
-
-export default connect(null, mapDispatchToProps)(AddTodoForm);
+// const mapDispatchToProps = dispatch => ({
+//   addToDo: text => dispatch( addToDo(text) )
+// })
+//
+// export default connect(null, mapDispatchToProps)(AddTodoForm);
+export default AddTodoForm

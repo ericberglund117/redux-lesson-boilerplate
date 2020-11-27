@@ -3,7 +3,6 @@ import Todo from '../components/ToDo';
 import { connect } from 'react-redux';
 
 const ToDoList = ({ todos }) => {
-  console.log(todos)
   const displayTodos = todos.map(todo => {
     return (
       <Todo
@@ -20,8 +19,8 @@ const ToDoList = ({ todos }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  todos: state.todos
-});
+function mapStateToProps(state) {
+  return { todos: state.todos }
+};
 
 export default connect(mapStateToProps)(ToDoList);
