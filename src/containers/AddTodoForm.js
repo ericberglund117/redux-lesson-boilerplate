@@ -10,7 +10,7 @@ const AddTodoForm = () => {
   const { handleSubmit, register, reset } = useForm();
 
   const onSubmit = values => {
-    dispatch(addToDo(values))
+    dispatch(addToDo(values.addToDo))
     reset()
     // this.props.addToDo(this.state.todo)
     // this.setState({ todo: '' })
@@ -22,7 +22,7 @@ const AddTodoForm = () => {
           <input
             placeholder="Add A Todo"
             data-testid="add-to-do"
-            name="add-to-do"
+            name="addToDo"
             ref={register({
             required: "Required",
             })}

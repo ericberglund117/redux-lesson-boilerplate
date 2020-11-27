@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ToDo = ({ id, text, completed }) => {
-  console.log('todo')
+const ToDo = (prop) => {
+  let todo = prop.todo
   return (
-    <li>{text}</li>
+    <li>{todo.todo}</li>
   )
 }
 
