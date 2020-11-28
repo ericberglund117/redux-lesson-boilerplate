@@ -1,3 +1,7 @@
+## information 
+
+MapStateToProps was not grabbing the necessary state to be displayed. So I reworked the application to include react-redux hooks (useSelector, useDispatch, useForm)
+
 ### Setup
 
 This app was created using the `create-react-app` boilerplate.
@@ -10,3 +14,5 @@ This app was created using the `create-react-app` boilerplate.
 
 ### Run Tests
 `npm test`
+
+
